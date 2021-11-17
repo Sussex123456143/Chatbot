@@ -19,6 +19,7 @@ public class Magpie4
 	 * @return a greeting
 	 */
   int confusion = 0;
+  int excitement = 0;
   public static void main(String[] args) {
 
     Magpie4 magpie = new Magpie4();
@@ -88,6 +89,10 @@ public class Magpie4
         }
 
       }
+    else if(findKeyword(statement,"Forget it")>=0){
+      confusion = 0;
+      response = "Alright";
+    }
 
 		else if (findKeyword(statement, "no") >= 0 || findKeyword(statement,"can't")>=0||findKeyword(statement, "impossible")>=0)
 		{
@@ -99,10 +104,31 @@ public class Magpie4
 				|| findKeyword(statement, "wow") >= 0
 				|| findKeyword(statement, "amazing") >= 0
         || findKeyword(statement, "incredible") >= 0)
-		{
+		  {
+      excitement = findKeyword(statement,"cool")+findKeyword(statement,"interesting")+findKeyword(statement,"wow")+findKeyword(statement,"amazing")+findKeyword(statement,"incredible");
+      System.out.println(excitement);
+      if (excitement>=63){
 			response = "If you think that's cool, I can direct you to some resources: https://web.mit.edu/yoric-locker/BartonDynamicSimNotes.pdf";
-		}
-    
+      }
+      else if(excitement>=33){
+        response = "Pretty neat, right? Check this out:https://www.academia.edu/Documents/in/Dynamic_Simulation";
+      }
+      else if(excitement>=19){
+        response = "If you like that, this is sure to get your loins a-boilin':https://www.digitalrefining.com/article/1000649/dynamic-simulation-a-tool-for-engineering-problems";
+      }
+      else if(excitement>=11){
+        response="Surely you will love this:https://www.youtube.com/playlist?list=PLujxSBD-JXgnnd16wIjedAcvfQcLw0IJI";
+      }
+      else if(excitement>=1){
+        response = "I bet an enthusiast like you would get a kick from this: https://en.wikipedia.org/wiki/Dynamic_simulation";
+      }
+      else if(excitement<0){
+        response="Good on you, bub. Glad for the enthusiasm";
+      }
+      
+      }
+		
+    //Hello Anish, are you active?
 		
 		// Responses which require transformations
 		else if (findKeyword(statement, "How to", 0) >= 0)
